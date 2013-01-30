@@ -31,7 +31,7 @@ void draw()
 	frame.setTitle("Fps: "+(int)frameRate);
 	background(0);
 	physics.update();
-	//displayParticles();
+	
 	cm.run(grid);
 	cm.display();
 	if(cm.isGrown())
@@ -102,6 +102,7 @@ void keyPressed()
 		case 'r' :
 		{
 			grid.init();
+			println("grid rearranged!");
 			break;
 		}
 

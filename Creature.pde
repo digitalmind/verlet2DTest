@@ -38,7 +38,7 @@ class Creature{
 		age = 0;
 		
 		MAXFORCE = 0.1f;
-		MAXSPEED = 4;
+		MAXSPEED = 2;
 		
 		acceleration = new PVector(0,0);
 		velocity = new PVector(0,0);
