@@ -15,6 +15,7 @@ Flowfield grid;
 PFont font;
 
 boolean HUDflag;
+boolean GRIDflag;
 
 void setup()
 {
@@ -33,6 +34,7 @@ void setup()
   	initGui();
 
 	grid = new Flowfield(10);
+	GRIDflag = false;
 
 }
 
@@ -42,6 +44,10 @@ void draw()
 	frame.setTitle("Fps: "+(int)frameRate);
 
 	background(0);
+	if(GRIDflag)
+	{
+		grid.display();
+	}
 	physics.update();
 	
 	cm.run(grid);
@@ -146,6 +152,10 @@ void keyPressed()
 		case 'h' :
 		{
 			HUDflag = !HUDflag;
+		}
+		case 'g' :
+		{
+			GRIDflag = !GRIDflag;
 		}
 
 	}
