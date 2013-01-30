@@ -21,8 +21,14 @@ boolean GRIDflag;
 
 void setup()
 {
+<<<<<<< HEAD
 	size(800,600, P2D);
 //	size(displayWidth, displayHeight, P3D);
+=======
+	size(800,600, P3D);
+  //size(displayWidth, displayHeight, P2D);
+    hint(DISABLE_DEPTH_MASK);
+>>>>>>> depth check disabled
 
 	font = loadFont("Consolas-14.vlw");
 	cm = new CreatureManager();
