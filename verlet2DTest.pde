@@ -10,12 +10,15 @@ VerletPhysics2D physics;
 CreatureManager cm;
 Flowfield grid;
 
+PFont font;
+
 void setup()
 {
 	size(800,600, P3D);
   //size(displayWidth, displayHeight, P2D);
 
 	//cr = new Creature();
+	font = loadFont("Consolas-14.vlw");
 	cm = new CreatureManager();
 
 	colorMode(HSB);
