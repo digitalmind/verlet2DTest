@@ -211,7 +211,7 @@ class Creature{
 	boolean update()
 	{
 		age +=1;
-
+		boolean grown;
 		if(grow())
 		{
 			return true;

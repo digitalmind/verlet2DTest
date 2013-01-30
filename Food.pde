@@ -10,13 +10,13 @@ class Food{
 		age = (int) random(250,1000);
 	}
 
-	Food(PVector _pos, float _e, float _a)
+	Food(PVector _pos, float _e, int _a)
 	{
 		position = _pos;
 		energy = _e;
 		age = _a;
 	}
-	
+
 	void update()
 	{
 		age -= 1;
