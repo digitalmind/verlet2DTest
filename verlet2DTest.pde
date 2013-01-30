@@ -4,6 +4,8 @@ import toxi.physics2d.behaviors.*;
 import toxi.physics2d.constraints.*;
 import controlP5.*;
 
+ControlP5 ctrl;
+
 VerletPhysics2D physics;
 
 //Creature cr;
@@ -11,6 +13,8 @@ CreatureManager cm;
 Flowfield grid;
 
 PFont font;
+
+boolean HUDflag;
 
 void setup()
 {
@@ -22,8 +26,12 @@ void setup()
 	cm = new CreatureManager();
 
 	colorMode(HSB);
+	
 	initPhysics();
-  
+  	
+  	initHUD();
+  	initGui();
+
 	grid = new Flowfield(10);
 
 }
@@ -32,6 +40,7 @@ void setup()
 void draw()
 {
 	frame.setTitle("Fps: "+(int)frameRate);
+
 	background(0);
 	physics.update();
 	
@@ -42,8 +51,33 @@ void draw()
 		addNewCellsToSystem();
 	}
 
+	if(HUDflag)
+	{
+		viewHUD();
+	}
+
 }
 
+void initGui()
+{
+	ctrl = new ControlP5(this);
+	// ControlWindow cw = ctrl.addControlWindow("Control Panel", 300,300);
+	// cw.hideCoordinates();
+
+
+}
+
+void initHUD()
+{
+	HUDflag = true;
+}
+
+void viewHUD()
+{
+	fill(200);
+	textFont(font, 14);
+	text("Creature count: "+cm.getCreatureCount()+"\nTotal cell count: "+cm.getTotalCellCount(), 5,14);
+}
 
 void addNewCellsToSystem()
 {
@@ -107,6 +141,11 @@ void keyPressed()
 			grid.init();
 			println("grid rearranged!");
 			break;
+		}
+
+		case 'h' :
+		{
+			HUDflag = !HUDflag;
 		}
 
 	}

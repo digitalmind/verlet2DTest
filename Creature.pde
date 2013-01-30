@@ -271,4 +271,10 @@ class Creature{
 	{
 
 	}
+
+	int getCellCount()
+	{
+		int count = cells.size();
+		return count;
+	}
 }

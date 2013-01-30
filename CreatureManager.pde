@@ -60,6 +60,22 @@ class CreatureManager{
 		return creaturesGrown;
 	}
 
+	int getCreatureCount()
+	{
+		int count = creatures.size();
+		return count;
+	}
+
+	int getTotalCellCount()
+	{
+		int count = 0;
+		for(Creature c : creatures)
+		{
+			count += c.getCellCount();
+		}
+
+		return count;
+	}
 
 
 
