@@ -29,6 +29,8 @@ class Flowfield{
 
 	void init()
 	{
+		long seed = (long)random(10);
+		noiseSeed(seed);
 		float xoff = 0.0f;
 		for (int i = 0; i < cols; i++)
 		{
