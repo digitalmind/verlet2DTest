@@ -3,14 +3,16 @@ import toxi.physics2d.*;
 import toxi.physics2d.behaviors.*;
 import toxi.physics2d.constraints.*;
 import controlP5.*;
+import java.util.*;
 
 ControlP5 ctrl;
 
 VerletPhysics2D physics;
 
-//Creature cr;
 CreatureManager cm;
 Flowfield grid;
+
+ArrayList<Food> foods;
 
 PFont font;
 
@@ -19,14 +21,15 @@ boolean GRIDflag;
 
 void setup()
 {
-	size(800,600, P3D);
-  //size(displayWidth, displayHeight, P2D);
+	size(800,600, P2D);
+//	size(displayWidth, displayHeight, P3D);
 
-	//cr = new Creature();
 	font = loadFont("Consolas-14.vlw");
 	cm = new CreatureManager();
 
 	colorMode(HSB);
+	
+	initFood();
 	
 	initPhysics();
   	
@@ -42,8 +45,8 @@ void setup()
 void draw()
 {
 	frame.setTitle("Fps: "+(int)frameRate);
-
 	background(0);
+
 	if(GRIDflag)
 	{
 		grid.display();
@@ -51,6 +54,7 @@ void draw()
 	physics.update();
 	
 	cm.run(grid);
+	
 	cm.display();
 	if(cm.isGrown())
 	{
@@ -61,14 +65,29 @@ void draw()
 	{
 		viewHUD();
 	}
+	Iterator f = foods.iterator();
+	while(f.hasNext())
+	{
+		Food fd = (Food) f.next();
+		fd.display();
+		if(fd.age<0)
+		{
+			f.remove();
+		}
+
+	}
 
 }
+void initFood()
+{
+	foods = new ArrayList<Food>();
 
+}
 void initGui()
 {
 	ctrl = new ControlP5(this);
-	// ControlWindow cw = ctrl.addControlWindow("Control Panel", 300,300);
-	// cw.hideCoordinates();
+	//ControlWindow cw = ctrl.addControlWindow("Control Panel", 300,300);
+	//cw.hideCoordinates();
 
 
 }
@@ -136,7 +155,10 @@ void initPhysics()
 
 void mousePressed()
 {
-
+	int count = (int) random(5);
+	for(int i=0; i<count;i++){
+		foods.add(new Food());
+	}
 }
 
 void keyPressed()
@@ -152,10 +174,12 @@ void keyPressed()
 		case 'h' :
 		{
 			HUDflag = !HUDflag;
+			break;
 		}
 		case 'g' :
 		{
 			GRIDflag = !GRIDflag;
+			break;
 		}
 
 	}

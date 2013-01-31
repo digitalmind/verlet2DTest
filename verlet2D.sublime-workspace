@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"dn",
+				"dnaToMutate"
+			],
+			[
+				"fd",
+				"fd"
+			],
+			[
 				"he",
 				"height"
 			],
@@ -115,94 +123,21 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "import toxi.geom.*;\nimport toxi.physics2d.*;\nimport toxi.physics2d.behaviors.*;\nimport toxi.physics2d.constraints.*;\nimport controlP5.*;\n\nVerletPhysics2D physics;\n\n//Creature cr;\nCreatureManager cm;\nFlowfield grid;\n\nPFont font;\n\nvoid setup()\n{\n	size(800,600, P3D);\n  //size(displayWidth, displayHeight, P2D);\n\n	//cr = new Creature();\n	font = loadFont(\"Consolas-14.vlw\");\n	\n	cm = new CreatureManager();\n\n	colorMode(HSB);\n	initPhysics();\n  \n	grid = new Flowfield(10);\n\n}\n\n\nvoid draw()\n{\n	frame.setTitle(\"Fps: \"+(int)frameRate);\n	background(0);\n	physics.update();\n	\n	cm.run(grid);\n	cm.display();\n	if(cm.isGrown())\n	{\n		addNewCellsToSystem();\n	}\n\n}\n\n\nvoid addNewCellsToSystem()\n{\n\n	for(Cell c : cm.newCells)\n	{\n		physics.addParticle(c);\n		\n		AttractionBehavior repel = new AttractionBehavior(c, 10, -2.0f);\n		physics.addBehavior(repel);\n	}\n\n	for(VerletSpring2D s : cm.newBonds)\n	{\n		physics.addSpring(s);\n	}\n	//println(cm.newCells.size()+\" cells added on this epoch!\");\n}\n\nvoid initPhysics()\n{\n	physics = new VerletPhysics2D();\n	for(Creature cr : cm.creatures)\n	{\n		for(Cell c : cr.cells)\n		{\n			physics.addParticle(c);\n			AttractionBehavior repel = new AttractionBehavior(c, 5, -2.0f);\n			physics.addBehavior(repel);\n\n			if(c.isLocked())\n			{\n				AttractionBehavior corePull = new AttractionBehavior(c, 50, 1.0f);\n				physics.addBehavior(corePull);\n\n				AttractionBehavior corePush = new AttractionBehavior(c, 25, -3.0f);\n				physics.addBehavior(corePush);\n			}\n		}\n\n		for(VerletSpring2D s : cr.bonds)\n		{\n			physics.addSpring(s);\n		}\n	}\n	Rect border = new Rect(new Vec2D(-10,-10), new Vec2D(width+10, height+10));\n	physics.setWorldBounds(border);\n		\n}\n\nvoid mousePressed()\n{\n\n}\n\nvoid keyPressed()\n{\n	switch(key){\n		case 'r' :\n		{\n			grid.init();\n			println(\"grid rearranged!\");\n			break;\n		}\n\n	}\n}\n\n",
-			"file": "verlet2DTest.pde",
-			"file_size": 1795,
-			"file_write_time": 130040133926205731,
-			"settings":
-			{
-				"buffer_size": 1797,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "* ba46ec2 - (HEAD, origin/master, master) (63 seconds ago) (2013-01-30 10:50:24 +0100) <Ali Elgin> minor update\n* 94ebc1f - (15 hours ago) (2013-01-29 19:36:00 +0100) <Ali Elgin> new file\n* ed07556 - (18 hours ago) (2013-01-29 17:19:49 +0100) <Ali Elgin> DnaManager class for all the genetic processing\n* 7ab466d - (18 hours ago) (2013-01-29 17:13:31 +0100) <Ali Elgin> initial\n",
-			"settings":
-			{
-				"buffer_size": 378,
-				"line_ending": "Windows",
-				"name": "Git Log Graph",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"file": "DnaManager.pde",
-			"settings":
-			{
-				"buffer_size": 21,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "CreatureManager.pde",
-			"settings":
-			{
-				"buffer_size": 922,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Creature.pde",
-			"settings":
-			{
-				"buffer_size": 4586,
-				"line_ending": "Windows",
-				"name": "class Creature{"
-			}
-		},
-		{
-			"file": "Flowfield.pde",
-			"settings":
-			{
-				"buffer_size": 914,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Cell.pde",
-			"settings":
-			{
-				"buffer_size": 210,
-				"line_ending": "Windows",
-				"name": "class Cell extends VerletParticle2D{"
-			}
-		},
-		{
-			"file": "Seed.pde",
-			"settings":
-			{
-				"buffer_size": 456,
-				"line_ending": "Windows",
-				"name": "class Seed{"
-			}
-		},
-		{
-			"file": "README",
-			"settings":
-			{
-				"buffer_size": 115,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "Packages/Processing/Processing.sublime-build",
 	"command_palette":
 	{
-		"height": 58.0,
+		"height": 150.0,
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -220,7 +155,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 424.0
+		"width": 440.0
 	},
 	"console":
 	{
@@ -237,6 +172,16 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Ali/Documents/GitHub/verlet2DTest/verlet2DTest.pde",
+		"/C/Users/Ali/Documents/GitHub/verlet2DTest/Cell.pde",
+		"/C/Users/Ali/Documents/GitHub/verlet2DTest/DnaManager.pde",
+		"/C/Users/Ali/Documents/GitHub/verlet2DTest/CreatureManager.pde",
+		"/C/Users/Ali/Documents/GitHub/verlet2DTest/Creature.pde",
+		"/C/Users/Ali/Documents/GitHub/verlet2DTest/Flowfield.pde",
+		"/C/Users/Ali/Documents/GitHub/verlet2DTest/Food.pde",
+		"/C/Users/Ali/Documents/GitHub/verlet2DTest/Seed.pde",
+		"/C/Users/Ali/Documents/GitHub/verlet2DTest/README",
+		"/C/Users/Ali/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
 		"/C/Users/Ali/Documents/Processing/verlet2DTest/Rows",
 		"/C/Users/Ali/Documents/Processing/verlet2DTest/	at verlet2DTest$Creature.follow(verlet2DTest.java",
 		"/C/Users/Ali/AppData/Roaming/Sublime Text 2/Packages/Processing/Processing.sublime-build",
@@ -287,252 +232,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "verlet2DTest.pde",
-					"settings":
-					{
-						"buffer_size": 1797,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								372,
-								372
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 182.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"settings":
-					{
-						"buffer_size": 378,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								378,
-								378
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Git\\syntax/Git Graph.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "DnaManager.pde",
-					"settings":
-					{
-						"buffer_size": 21,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								21,
-								21
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "CreatureManager.pde",
-					"settings":
-					{
-						"buffer_size": 922,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								834,
-								834
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 520.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "Creature.pde",
-					"settings":
-					{
-						"buffer_size": 4586,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								303,
-								311
-							]
-						],
-						"settings":
-						{
-							"auto_name": "class Creature{",
-							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 147.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "Flowfield.pde",
-					"settings":
-					{
-						"buffer_size": 914,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								707,
-								707
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 293.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Cell.pde",
-					"settings":
-					{
-						"buffer_size": 210,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								177,
-								177
-							]
-						],
-						"settings":
-						{
-							"auto_name": "class Cell extends VerletParticle2D{",
-							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "Seed.pde",
-					"settings":
-					{
-						"buffer_size": 456,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								331,
-								331
-							]
-						],
-						"settings":
-						{
-							"auto_name": "class Seed{",
-							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "README",
-					"settings":
-					{
-						"buffer_size": 115,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								115,
-								115
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -597,7 +298,7 @@
 		"width": 0.0
 	},
 	"show_minimap": true,
-	"show_open_files": false,
+	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 150.0,

@@ -46,17 +46,6 @@ class Flowfield{
 		}
 	}
 
-	// void render()
-	// {
-	// 	for(int i=0; i<cols; i++)
-	// 	{
-	// 		for(int j=0; j<rows;j++)
-	// 		{
-
-	// 		}
-	// 	}
-
-	// }
 
 
   void display() {
