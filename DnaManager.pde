@@ -4,7 +4,7 @@ class DnaManager{
 	{
 		String dnaToMutate = _dna;
 
-		for(int i=0;i<dnaToMutate.length;i++)
+		for(int i=0;i<dnaToMutate.length();i++)
 		{
 
 		}

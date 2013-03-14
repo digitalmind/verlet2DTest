@@ -71,17 +71,21 @@ void draw()
 	{
 		viewHUD();
 	}
-	Iterator f = foods.iterator();
-	while(f.hasNext())
-	{
-		Food fd = (Food) f.next();
-		fd.display();
-		if(fd.age<0)
-		{
-			f.remove();
-		}
 
+	Iterator<Food> foodIterator = foods.iterator();
+	while(foodIterator.hasNext())
+	{
+		Food f = foodIterator.next();
+		f.update();
+		f.display();
+
+		if(f.age<0)
+		{
+			foodIterator.remove();
+			println("Removed!");
+		}
 	}
+	
 
 }
 void initFood()
@@ -92,6 +96,7 @@ void initFood()
 void initGui()
 {
 	ctrl = new ControlP5(this);
+	
 	//ControlWindow cw = ctrl.addControlWindow("Control Panel", 300,300);
 	//cw.hideCoordinates();
 
@@ -161,9 +166,12 @@ void initPhysics()
 
 void mousePressed()
 {
-	int count = (int) random(5);
+	int count = (int) random(0,5);
+	//println(count);
 	for(int i=0; i<count;i++){
+	//	println("i = "+i);
 		foods.add(new Food());
+
 	}
 }
 
